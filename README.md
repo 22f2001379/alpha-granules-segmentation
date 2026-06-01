@@ -183,16 +183,12 @@ Example: upload best checkpoint to S3 and reference a download script in `script
 aws s3 cp s3://my-bucket/models/best_model.pth models/checkpoints/best_model.pth
 ```
 
-Contact & License
+Contact
 -----------------
-- Contact: Your Name <your.email@example.com>
-- License: Add a license file (e.g., `LICENSE`) and choose an open-source license (MIT/Apache-2.0). This README is a placeholder.
+- Contact: Renee Keerthana Paturi <reneekeerthana2107@gmail.com>
 
 Acknowledgements
 - Built on top of StarDist-style workflows and PyTorch/NumPy/OpenCV utilities.
 
-If you want, I can also:
-- Add a small CI workflow for GitHub Actions that runs tests and pre-commit.
-- Add a `requirements.txt` / `dev-requirements.txt` with pinned dev dependencies.
-- Add a short `scripts/download_model.sh` helper to fetch large models from S3/GDrive.
+
 
