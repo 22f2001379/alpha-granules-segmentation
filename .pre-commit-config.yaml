@@ -1,0 +1,53 @@
+# pre-commit configuration for this repository
+#
+# Installation:
+#   python -m pip install --upgrade pip
+#   python -m pip install pre-commit
+#   # Install the git hook scripts for this repo
+#   pre-commit install
+#
+# Run hooks manually against all files:
+#   pre-commit run --all-files
+#
+# If you need to run a specific hook, use:
+#   pre-commit run <hook-id> --all-files
+#
+# Windows users: run the same commands in PowerShell or CMD; ensure the Python
+# interpreter used for pre-commit matches your project's virtual environment.
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        name: black (python formatter)
+        language_version: python3
+        args: ["--line-length=100"]
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (import sorter)
+        language_version: python3
+        args: ["--profile", "black"]
+
+  - repo: https://github.com/pre-commit/mirrors-flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        name: flake8 (linter)
+        language_version: python3
+        args: ["--max-line-length=100"]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+      - id: trailing-whitespace
+        name: trailing-whitespace
+      - id: check-added-large-files
+        name: check-added-large-files
+        # limit file size to 10 MB (10240 KB)
+        args: ["--maxkb=10240"]

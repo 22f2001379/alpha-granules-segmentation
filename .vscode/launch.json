@@ -1,0 +1,123 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Run dataset.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/dataset.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--manifest",
+        "data/manifest.csv",
+        "--output_dir",
+        "data/tiled",
+        "--tile_size",
+        "512"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Python: Debug Flask",
+      "type": "python",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "src/api/base.py",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1",
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "args": [
+        "run",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "5000"
+      ],
+      "jinja": true,
+      "justMyCode": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Run stardist_train.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/stardist_train.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--manifest",
+        "data/manifest.csv",
+        "--checkpoint_dir",
+        "experiments/stardist_model",
+        "--epochs",
+        "10",
+        "--batch_size",
+        "4",
+        "--gpu",
+        "0",
+        "--seed",
+        "42"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Python: Run HPO (Optuna)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/hpo_optuna.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--manifest",
+        "data/manifest.csv",
+        "--trials",
+        "10",
+        "--device",
+        "0",
+        "--kfold",
+        "2",
+        "--direction",
+        "pq",
+        "--epochs",
+        "5"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Python: Run stardist_infer.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/stardist_infer.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--model",
+        "experiments/stardist_model",
+        "--input",
+        "data/images",
+        "--out_dir",
+        "experiments/inference_results",
+        "--tile_size",
+        "1024",
+        "--overlap",
+        "128",
+        "--min_area_px",
+        "50",
+        "--device",
+        "cuda:0"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
+}
